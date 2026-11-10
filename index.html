@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Твоя профессия</title>
+    <style>
+        /* --- БАЗОВЫЕ НАСТРОЙКИ --- */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px; 
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #050814; /* Глубокий темный фон */
+            color: #cbd5e1;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Общий контейнер для контента, чтобы текст не растягивался */
+        .content-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* --- ШАПКА САЙТА --- */
+        header {
+            background-color: rgba(10, 17, 40, 0.9);
+            backdrop-filter: blur(10px);
+            color: #60a5fa;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            
+        }
+
+        .header-div {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header-div a {
+            color: #93c5fd;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .header-div a:hover {
+            color: #ffffff;
+            background-color: #2563eb;
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* --- ГЛАВНЫЙ БЛОК (HERO) --- */
+        .Glava {
+            position: relative;
+            background-color: #0a1128; 
+            background-image: 
+                linear-gradient(135deg, rgba(10, 17, 40, 0.6), rgba(5, 8, 20, 0.8)),
+                url('https://i.postimg.cc/D0LC4zyg/Vector.png');
+            background-size: 100% 100%, 33.333% 100%; 
+            background-position: center, left center;
+            background-repeat: no-repeat, repeat-x;
+            text-align: center;
+            padding: 120px 20px 160px 20px; 
+            width: 100%;
+            border-bottom: none;
+            box-shadow: none; 
+            overflow: hidden;
+        }
+
+        /* Убираем синее свечение у самого текста, чтобы он не подсвечивал сетку */
+        .Glava h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+            color: #ffffff;
+            /* Заменили синее свечение на обычную темную тень для объема */
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8); 
+        }
+
+        /* Плавный переход в следующий блок */
+        .Glava::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px; /* Высота верхнего перехода */
+            /* Градиент от цвета шапки (#0a1128) к прозрачности */
+            background: linear-gradient(to bottom, #0a1128, rgba(10, 17, 40, 0));
+            pointer-events: none; 
+            z-index: 5;
+        }
+
+        /* Плавный переход СНИЗУ (к следующему блоку) */
+        .Glava::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px; 
+            background: linear-gradient(to bottom, rgba(5, 8, 20, 0), #050814);
+            pointer-events: none; 
+            z-index: 5;
+        }
+
+
+      
+
+        .Glava .subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: #93c5fd;
+            margin-bottom: 40px;
+        }
+
+        
+         .main-btn {
+            display: inline-block;
+            /* Оставляем ваш темно-синий градиент */
+            background: linear-gradient(135deg, #011d6a 0%, #010576 100%);
+            color: #ffffff;
+            padding: 16px 40px; /* Чуть уменьшили отступы для аккуратности */
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            
+            /* 1. ОБЫЧНАЯ ФОРМА: делаем классическую "таблетку" */
+            border-radius: 50px; 
+            
+           
+            box-shadow: 0 4px 15px rgba(2, 38, 138, 0.5); 
+            position: relative;
+            z-index: 20;
+            border: none; /* Убираем возможные рамки */
+        }
+
+        .main-btn:hover {
+            /* При наведении просто делаем градиент чуть светлее */
+            background: linear-gradient(135deg, #031f6b 0%, #02109e 100%);
+            
+            /* Тень становится чуть более выраженной, но без сдвигов и увеличения */
+            box-shadow: 0 6px 20px rgba(3, 50, 184, 0.7); 
+        }
+
+        /* --- ОБЩИЕ СЕКЦИИ (На всю ширину) --- */
+         .section-full {
+            width: 100%;
+            padding: 80px 20px;
+            position: relative;
+            /* УБИРАЕМ СИНЮЮ ОБВОДКУ ПО КРАЯМ */
+            border: none; 
+        }
+
+        /* --- КОМПАНИИ --- */
+      .kompany {
+            position: relative;
+            overflow: hidden;
+            background-color: #0a1128; 
+            
+            /* УМЕНЬШАЕМ ЗАТЕМНЕНИЕ: меняем 0.6 на 0.2 (или 0.3) */
+            background-image: 
+                linear-gradient(rgba(10, 17, 40, 0.2), rgba(10, 17, 40, 0.2)), 
+                url('https://i.postimg.cc/k4F6V3Pf/Elements.png');
+                
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 80% auto; 
+        }
+        /* Чередование цветов фона */
+        .bg-dark { background-color: #050814; }
+        .bg-light { background-color: #0a1128; }
+
+         .section-title {
+            font-size: 2rem;
+            color: #60a5fa; /* Вернули изначальный голубой цвет */
+            text-align: center;
+            
+            
+            display: block;
+            width: fit-content; 
+            margin: 0 auto 40px auto;
+            padding: 15px 60px; 
+            
+            
+            /* ПОЛНОСТЬЮ УБИРАЕМ ВСЕ РАМКИ */
+            border: none;
+            border-radius: 0;
+        }
+
+        /* --- БЛОК ЧТО ТАКОЕ IT --- */
+        .informations .It {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .It-text { flex: 1; }
+
+        .It-text p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .It-text b { color: #60a5fa; }
+
+       .It-image { 
+            flex: 1; 
+            display: flex;            /* Включаем flex для центрирования картинки */
+            justify-content: center;  /* Центрируем по горизонтали */
+        }
+
+        .It-image img {
+            width: 80%;               /* Уменьшаем размер картинки (было 100%) */
+            max-width: 450px;         /* Ограничиваем максимальную ширину, чтобы не была огромной */
+            border-radius: 20px;      /* Оставляем скругление краев */
+            border: none;             /* УБИРАЕМ СИНЮЮ РАМКУ */
+            
+            /* Заменили старую тяжелую тень на более мягкую и естественную */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); 
+        }
+
+        /* --- СФЕРЫ ПРИМЕНЕНИЯ --- */
+      .sfera {
+            position: relative;
+            background-color: #050814; 
+            
+            /* УМЕНЬШИЛИ ПЛОТНОСТЬ ТЕМНОГО СЛОЯ (было 0.85, стало 0.5) */
+            background-image: 
+                linear-gradient(rgba(5, 8, 20, 0.5), rgba(10, 17, 40, 0.6)),
+                url('https://i.postimg.cc/vTsrjtbn/Vector-(1).png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            overflow: hidden; 
+        }
+
+        /* Плавный переход СВЕРХУ (от цвета предыдущего блока) */
+        .sfera::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100px;
+            background: linear-gradient(to bottom, #050814, rgba(5, 8, 20, 0));
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* Плавный переход СНИЗУ (к следующему блоку) */
+        .sfera::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 100px;
+            background: linear-gradient(to top, #050814, rgba(5, 8, 20, 0));
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .sfera-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 10; /* Карточки поверх градиентных переходов */
+        }
+
+                /* --- СФЕРЫ ПРИМЕНЕНИЯ --- */
+        .sfera-card {
+            /* Делаем карточки более призрачными (уменьшаем непрозрачность до 0.3) */
+            background: rgba(30, 41, 59, 0.3); 
+            /* Усиливаем размытие фона, чтобы текст оставался читаемым */
+            backdrop-filter: blur(15px); 
+            padding: 30px;
+            border-radius: 20px;
+            
+            /* Убираем рамку, чтобы она не появлялась при наведении */
+            border: none; 
+            
+            /* Очень легкая тень для объема, без свечения */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            
+            /* Убираем transform из анимации, оставляем только плавное изменение фона */
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        
+    
+
+        /* Стили для контейнера иконки */
+        .sfera-icon {
+            height: 60px; /* Фиксированная высота */
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Стили для самих картинок-иконок */
+        .sfera-icon img {
+            max-height: 100%;
+            max-width: 60px;
+            object-fit: contain;
+            /* Небольшая тень, чтобы иконки выделялись на темном фоне */
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.4)); 
+        }
+
+        .sfera-card h3 { color: #93c5fd; margin-bottom: 10px; font-size: 1.3rem; }
+        .sfera-card p { color: #94a3b8; font-size: 1rem; }
+
+        /* --- ПЕРСПЕКТИВЫ --- */
+
+   .perspective {
+    position: relative; /* Это обязательно, чтобы картинки позиционировались относительно этого блока */
+    background-color: #050814;
+    overflow: hidden;
+}
+
+/* Картинка 1 (Union.png) - Правый верхний угол */
+.perspective::before {
+    content: '';
+    position: absolute;
+    top: 40px;       /* Сдвиг вниз */
+    right: 80px;     /* Сдвиг влево от правого края */
+    width: 250px;
+    height: 250px;
+    background-image: url('https://i.postimg.cc/43VwFqss/Union.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.3;    /* Прозрачность */
+    z-index: 0;      /* Слой на заднем плане */
+    pointer-events: none; /* Чтобы не мешать нажатиям */
+}
+
+/* Картинка 2 (Frame-45.png) - Левый нижний угол */
+.perspective::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;    /* Прижимаем к низу */
+    left: 20px;      /* Прижимаем к левому краю */
+    width: 300px;
+    height: 300px;
+    background-image: url('https://i.postimg.cc/43VwFqss/Union.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.3;    /* Прозрачность */
+    z-index: 0;      /* Слой на заднем плане */
+    pointer-events: none;
+}
+
+/* Этот стиль нужен, чтобы текст и карточки были ПОВЕРХ наших фоновых картинок */
+.perspective .content-container {
+    position: relative;
+    z-index: 2;
+}
+
+        .perspective-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+         .perspective-item {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 15px;
+            
+            /* УБРАЛИ СИНЮЮ ОБВОДКУ СЛЕВА */
+            border: none; 
+            /* (Если хотите, чтобы блок имел легкую рамку со всех сторон, напишите: border: 1px solid rgba(59, 130, 246, 0.2);) */
+            
+            /* Оставили только плавный переход цвета фона */
+            transition: background-color 0.3s ease; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* Легкая тень для объема */
+        }
+
+        .perspective-item:hover {
+            /* При наведении блок просто чуть светлеет, без сдвигов и прыжков */
+            background-color: #26334d;
+            
+        }
+        .perspective-item h3 { color: #60a5fa; margin-bottom: 10px; font-size: 1.3rem; }
+        .perspective-item p { color: #cbd5e1; font-size: 1.05rem; }
+
+        /* --- КОМПАНИИ --- */
+       .kompany {
+            position: relative;
+            overflow: hidden;
+            background-color: #0a1128; 
+            
+            /* Убираем картинку из основного фона, оставляем только чистый цвет */
+            background-image: none; 
+        }
+
+        /* Новый слой для фоновой картинки */
+        .kompany-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://i.postimg.cc/k4F6V3Pf/Elements.png');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: 80% auto; 
+            
+            /* ВОТ МАГИЯ ЯРКОСТИ: */
+            filter: brightness(0.6) contrast(1); /* 1.8 делает ярче в почти 2 раза */
+            opacity: 0.5; /* Делаем слой немного прозрачным, чтобы он не перебивал текст */
+            
+            z-index: 0;
+            pointer-events: none; /* Чтобы слой не мешал кликать по ссылкам */
+        }
+
+        /* Убедимся, что текст и карточки находятся ПОВЕРХ фона */
+        .kompany .content-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Плавное растворение СВЕРХУ */
+        .kompany::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100px;
+            background: linear-gradient(to bottom, #050814, rgba(5, 8, 20, 0));
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* Плавное растворение СНИЗУ */
+        .kompany::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 100px;
+            background: linear-gradient(to top, #050814, rgba(5, 8, 20, 0));
+            z-index: 5;
+            pointer-events: none;
+        }
+
+           /* --- СЕТКА КОМПАНИЙ С РАСТВОРЕНИЕМ ПО КРАЯМ --- */
+        .company-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 10;
+            
+            /* Эффект растворения (размытия) карточек по левому и правому краям */
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+        }
+
+        /* Ячейка для компании */
+        .company-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 120px;
+            
+            /* Делаем фон еще более мягким и прозрачным */
+            background: rgba(30, 41, 59, 0.4); 
+            border-radius: 15px;
+            
+            /* Убираем жесткую рамку, чтобы карточки не выглядели как отдельные плитки */
+            border: 1px solid transparent; 
+            
+            text-decoration: none;
+            
+            /* ОЧЕНЬ МЯГКАЯ АНИМАЦИЯ: меняется только цвет фона, никаких движений */
+            transition: background-color 0.4s ease; 
+            padding: 20px;
+        }
+
+        /* При наведении просто чуть подсвечиваем фон, без увеличения и теней */
+        .company-item:hover { 
+            background: rgba(30, 41, 59, 0.8); 
+        }
+
+        /* Логотипы */
+        .company-item img {
+            max-width: 90%;
+            max-height: 70px;
+            object-fit: contain;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            filter: none; 
+        }
+
+
+        /* Текст названия компании */
+        .company-item span {
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .company-item:hover { 
+            transform: scale(1.1);
+            filter: brightness(1.2) grayscale(0%);
+        }
+
+        /* --- СПИСОК ПРОФЕССИЙ --- */
+        .intro-text p { font-size: 1.1rem; color: #cbd5e1; text-align: center; margin-bottom: 15px; }
+
+        .list-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+        }
+
+        .toggle-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(90deg, #1e3a8a, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .toggle-btn:hover { 
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            transform: translateY(-2px); 
+        }
+
+        .hidden-list {
+            display: none;
+            background: #0f172a;
+            margin-top: 20px;
+            border-radius: 15px;
+            padding: 15px;
+            
+            /* УБИРАЕМ СИНЮЮ ОБВОДКУ */
+            border: none; 
+            
+            /* Можно добавить легкую тень для объема вместо рамки */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); 
+        }
+
+        .hidden-list ul { list-style: none; }
+
+        .hidden-list li {
+            background: #1e293b;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 15px;
+            
+            /* УБИРАЕМ ОБВОДКУ СЛЕВА */
+            border: none; 
+            
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            
+            /* Убираем анимацию изменения цвета рамки из transition, так как рамки больше нет */
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .hidden-list li:hover { 
+            transform: scale(1.02);
+            
+            /* УБИРАЕМ ИЗМЕНЕНИЕ ЦВЕТА РАМКИ */
+            /* border-left-color: #00d2ff; */
+            
+            background: #23324a;
+        }
+
+        .hidden-list li p {
+            color: #94a3b8;
+            font-size: 1rem;
+            font-weight: normal;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .hidden-list li strong { color: #60a5fa; font-size: 1.05rem; }
+
+        .close-btn {
+            background: #334155;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        .close-btn:hover { background: #475569; }
+
+        /* --- ТЕСТ --- */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            width: 100%;
+            background-color: #050814;
+        }
+
+        #box {
+            background: #0f172a;
+            padding: 40px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        
+        }
+
+        h1, h2 { margin-top: 0; color: #93c5fd; font-size: 1.5rem; }
+        #prog { color: #64748b; font-size: 0.9rem; margin-bottom: 15px; display: block; }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            background: #1e293b;
+            color: #cbd5e1;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .btn:hover {
+            background: #23324a;
+            border-color: #3b82f6;
+            color: #ffffff;
+            transform: translateY(-2px);
+            
+        }
+
+        #start-btn {
+            background: linear-gradient(90deg, #1e3a8a, #2563eb);
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        #start-btn:hover { 
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+           
+        }
+
+        #res {
+            font-size: 1.8rem;
+            color: #00d2ff;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 10px;
+            border-bottom: 2px solid #2563eb;
+            display: inline-block;
+            
+        }
+
+        /* --- ПОДВАЛ --- */
+        footer {
+            background-color: #0a1128;
+            color: #64748b;
+            text-align: center;
+            padding: 30px 20px;
+          
+        }
+
+        .footr { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        .footr p { margin: 0; font-size: 1rem; }
+
+        /* --- АДАПТИВ ПОД МОБИЛЬНЫЕ --- */
+        @media (max-width: 768px) {
+            .section-full { padding: 50px 20px; }
+
+            .informations .It { flex-direction: column; gap: 20px; }
+            .It-image img { margin-top: 10px; }
+
+            .company-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .perspective::before {
+                width: 150px;
+                height: 150px;
+                right: 10px;
+                opacity: 0.2; /* На телефоне делаем еще прозрачнее */
+            }
+            .perspective::after {
+                display: none; /* Вторую картинку на телефоне можно вообще убрать, чтобы не мешала */
+            }
+
+            .Glava {
+                background-size: 100% 100%, cover;
+                background-repeat: no-repeat, no-repeat;
+                background-position: center, center;
+                padding-bottom: 100px; 
+            }
+
+            /* Уменьшаем высоту переходов на телефонах */
+            .Glava::before {
+                height: 60px; 
+            }
+
+            .Glava::after {
+                height: 80px; 
+            }
+
+            .header-div {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+            
+            .header-div a { padding: 8px; font-size: 0.9rem; }
+            .Glava h1 { font-size: 2rem; }
+            .Glava .subtitle { font-size: 1rem; }
+            .hidden-list li { padding: 15px; font-size: 1rem; }
+            #box { padding: 20px; }
+            .sfera { background-size: cover, 200px; } /* Уменьшаем круг на телефонах */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- МЕНЮ -->
+    <header>
+        <div class="header-div">
+            <a href="#home">Главная</a>
+            <a href="#about">Интересное об IT</a>
+            <a href="#test">Тест</a>
+            <a href="#contacts">Контакты</a>
+        </div>
+    </header>
+
+    <!-- ГЛАВНАЯ -->
+    <div class="Glava" id="home">
+        <div class="content-container">
+            <h1>Как найти себя в сфере IT?</h1>
+            <p class="subtitle">Узнай, какие профессии существуют, сколько на них зарабатывают и какая сфера подходит именно тебе.</p>
+            <a href="#test" class="main-btn">Пройти тест на профориентацию</a>
+        </div>
+    </div>
+
+    <!-- ЧТО ТАКОЕ IT -->
+    <section class="section-full bg-dark" id="about">
+        <div class="content-container">
+            <div class="informations">
+                <div class="It">
+                    <div class="It-text">
+                        <p><b>Сфера информационных технологий (IT)</b> (от англ. Information Technology) — это область, которая охватывает все способы создания, хранения, обмена и использования информации в цифровом формате.</p>
+                        <p>Включает всё, что связано с обработкой информации с помощью компьютеров: интернет, программы, приложения, создание сайтов, облачные сервисы.</p>
+                    </div>
+                    <div class="It-image">
+                        <!-- Заменил сломанную картинку на ваш абстрактный Frame-48.png -->
+                        <img src="https://i.postimg.cc/Y9G5CMcG/Layer-1.png" alt="IT Технологии">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- СФЕРЫ ПРИМЕНЕНИЯ -->
+  <section class="section-full bg-light sfera">
+        <div class="content-container">
+            <h2 class="section-title">Сферы применения IT-технологий</h2>
+            <div class="sfera-grid">
+                <div class="sfera-card">
+                    <div class="sfera-icon"><img src="https://cdn-icons-png.flaticon.com/512/2830/2830284.png" alt="Бизнес"></div>
+                    <h3>Бизнес</h3>
+                    <p>Автоматизация процессов, анализ данных, электронная коммерция.</p>
+                </div>
+                <div class="sfera-card">
+                    <div class="sfera-icon"><img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" alt="Медицина"></div>
+                    <h3>Медицина</h3>
+                    <p>Учёт информации, управление записями, внедрение новых методов диагностики.</p>
+                </div>
+                <div class="sfera-card">
+                    <div class="sfera-icon"><img src="https://cdn-icons-png.flaticon.com/512/3976/3976625.png" alt="Образование"></div>
+                    <h3>Образование</h3>
+                    <p>Дистанционное обучение, интерактивные материалы, электронные ресурсы.</p>
+                </div>
+                <div class="sfera-card">
+                    <div class="sfera-icon"><img src="https://cdn-icons-png.flaticon.com/512/3097/3097180.png" alt="Транспорт"></div>
+                    <h3>Транспорт</h3>
+                    <p>Управление движением, контроль безопасности, оптимизация логистики.</p>
+                </div>
+                <div class="sfera-card">
+                    <div class="sfera-icon"><img src="https://cdn-icons-png.flaticon.com/512/2830/2830305.png" alt="Госуправление"></div>
+                    <h3>Госуправление</h3>
+                    <p>Автоматизация учёта, регистрация данных, электронное взаимодействие с гражданами.</p>
+                </div>
+                <div class="sfera-card">
+                    <div class="sfera-icon"><img src="https://cdn-icons-png.flaticon.com/512/3659/3659899.png" alt="Искусство"></div>
+                    <h3>Искусство</h3>
+                    <p>Разработка игр, создание генеративной музыки и литературы.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПЕРСПЕКТИВЫ -->
+    <section class="section-full bg-dark perspective">
+        <div class="content-container">
+            <h2 class="section-title">Перспективы развития</h2>
+            <div class="perspective-list">
+                <div class="perspective-item">
+                    <h3>Искусственный интеллект</h3>
+                    <p>Будет использоваться повсеместно — от помощи в поиске информации до автоматизации бизнес-процессов.</p>
+                </div>
+                <div class="perspective-item">
+                    <h3>Кибербезопасность</h3>
+                    <p>Компании будут активно инвестировать в защиту данных, развитие центров мониторинга и найм специалистов.</p>
+                </div>
+                <div class="perspective-item">
+                    <h3>Edge-computing</h3>
+                    <p>Обработка данных не на серверах, а в устройствах. Это уменьшит задержки и повысит безопасность.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОМПАНИИ -->
+   <section class="section-full bg-light kompany">
+     <div class="kompany-bg"></div>
+        <div class="content-container">
+            <h2 class="section-title">Крупнейшие IT-компании в России</h2>
+                        <div class="company-grid">
+                <a href="https://ya.ru" target="_blank" class="company-item">
+                    <img src="https://siriusuniversity.ru/upload/iblock/a24/5o42s14aabwy2ztgyhrjx0uvc516eg63.svg" alt="Яндекс">
+                </a>
+                <a href="https://www.tbank.ru" target="_blank" class="company-item">
+                    <img src="https://dpgrussia.com/wp-content/uploads/2025/01/т-банк-лого.png" alt="Т-Банк">
+                </a>
+                <a href="https://www.sberbank.ru" target="_blank" class="company-item">
+                    <img src="https://choice-estate.ru/local/templates/v3/dist/img/new-logo-sber.png" alt="Сбер">
+                </a>
+                <a href="https://www.mts.ru" target="_blank" class="company-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=6e6fc900d54c43076111ef1209f9d09c_l-8218669-images-thumbs&n=13" alt="МТС">
+                </a>
+                <a href="https://rostec.ru" target="_blank" class="company-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Rostec_logo.svg/960px-Rostec_logo.svg.png" alt="Ростех">
+                </a>
+                <a href="https://www.rt.ru" target="_blank" class="company-item">
+                    <img src="https://avatars.mds.yandex.net/i?id=8b2154bb04e4d1c9d97149f0d0e409ac27f2b26e-7822413-images-thumbs&n=13" alt="Ростелеком">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- СПИСОК ПРОФЕССИЙ -->
+    <section class="section-full bg-dark Kontainer">
+        <div class="content-container">
+            <div class="intro-text">
+                <h2 class="section-title">Как понять, какая IT-профессия тебе подходит?</h2>
+                <p class="p1">Понять, какая профессия в IT подходит, можно с помощью профориентационных тестов. Они помогают проанализировать личные качества и определить, какие направления соответствуют типу личности.</p>
+                <p class="p2">Однако стоит учитывать, что профессиональный успех зависит и от других факторов, например, от актуального состояния рынка и мотивации к саморазвитию.</p>
+            </div>
+
+            <div class="list-container">
+                <button class="toggle-btn" onclick="toggleMyList()">
+                    Список IT-профессий <span id="arrow">▼</span>
+                </button>
+                
+                <div id="dropdownList" class="hidden-list">
+                    <ul>
+                        <li>Веб-разработчик <p>Создают сайты и веб-приложения, работают с фронтендом (интерфейсом) и бэкендом (серверной частью).<br> <strong>Зарплата: 115 000 – 170 000 ₽</strong></p></li>
+                        <li>Аналитик данных <p>Собирает данные из разных источников, очищает от лишнего, визуализирует и ищет закономерности.<br> <strong>Зарплата: 40 000 – 380 000 ₽</strong></p></li>
+                        <li>Дизайнер <p>Создаёт визуальную часть цифровых продуктов: сайты, приложения, рекламные материалы и анимацию.<br> <strong>Зарплата: 70 000 – 170 000 ₽</strong></p></li>
+                        <li>Специалист по кибербезопасности <p>Защищает компьютерные системы от кибератак.<br> <strong>Зарплата: 60 000 - 450 000 ₽</strong></p></li>
+                        <li>DevOps-инженер <p>Управляет серверами, базами данных, облачной инфраструктурой и сетями.<br> <strong>Зарплата: 90 000 - 350 000 ₽</strong></p></li>
+                        <li>Тестировщик <p>Выявляет ошибки и дефекты в программном обеспечении.<br> <strong>Зарплата: 80 000 - 150 000 ₽</strong></p></li>
+                        <li>Системный администратор <p>Проектирует, настраивает и поддерживает компьютерные системы.<br> <strong>Зарплата: 60 000 - 350 000 ₽</strong></p></li>
+                        <li>Специалист по искусственному интеллекту <p>Занимается разработкой, обучением, адаптацией и применением систем ИИ.<br> <strong>Зарплата: 70 000 - 480 000 ₽</strong></p></li>
+                        <li>Project-менеджер <p>Управляет проектами и контролирует команду, распределяет ресурсы, бюджет и сроки.<br> <strong>Зарплата: 80 000 - 230 000 ₽</strong></p></li>
+                        <li>Компьютерный лингвист <p>Разрабатывает алгоритмы распознавания речи, переводчики и онлайн-словари.<br> <strong>Зарплата: 50 000 - 300 000 ₽</strong></p></li>
+                        <li>Разработчик программного обеспечения <p>Занимается созданием программных решений для бизнеса.<br> <strong>Зарплата: 50 000 - 800 000 ₽</strong></p></li>
+                        <li>Разработчик игр <p>Создаёт видеоигры для ПК, консолей и мобильных устройств.<br> <strong>Зарплата: 75 000 - 220 000 ₽</strong></p></li>
+                        <li>Data Scientist <p>Строит модели машинного обучения для прогнозирования и решения сложных бизнес-задач.<br> <strong>Зарплата: 80 000 - 700 000 ₽</strong></p></li>
+                        <li>ML-инженер <p>Берёт готовые модели, оптимизирует их, интегрирует в приложения и настраивает обновление.<br> <strong>Зарплата: 90 000 - 650 000 ₽</strong></p></li>
+                    </ul>
+                    <button class="toggle-btn close-btn" onclick="toggleMyList()">
+                        Свернуть список <span>▲</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ТЕСТ -->
+    <main id="test">
+        <div id="box">
+            <div id="s-screen">
+                <h1>Узнай, какая IT-профессия тебе подходит</h1>
+                <button id="start-btn" class="btn" onclick="start()">Начать тест</button>
+            </div>
+            <div id="q-screen" style="display:none">
+                <span id="prog">Вопрос 1 из 11</span>
+                <h2 id="q-text">Вопрос</h2>
+                <div id="ans"></div>
+            </div>
+            <div id="f-screen" style="display:none">
+                <h2>Твой результат:</h2>
+                <div id="res"></div>
+                <button class="btn" onclick="location.reload()" style="background: #1e293b; color: #60a5fa;">Пройти еще раз</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- КОНТАКТЫ -->
+    <footer id="contacts">
+        <div class="footr">
+            <p>Наш тг: professions_life</p>
+            <p>Наш вк: profes-sions_vk</p>
+        </div>
+    </footer>
+
+    <script>
+        const questions = [
+            { q: " Нравится ли вам искать ошибки в коде ?", a: [{ t: "Да", k: "E" }, { t: "Нет", k: "0" }] },
+            { q: "Что из этого вам нравится ?", a: [{ t: "Разрабатывать игры", k: "П" }, { t: "Работать с системами и данными", k: "Б" }, { t: "Работать с искусственным интелектом", k: "К" }, { t: "Мотивировать и сплочать коллектив", k: "Л" }, { t: "Разрабатывать програмные решения для бизнеса", k: "Н" }, { t: "Создавать дизайн приложений", k: "В" }, { t: "Разрабатывать приложения", k: "А" }, { t: "Ничего из этого", k: "0" }] },
+            { q: "Если бы вас позвали работать в крутую IT компанию чем бы вы там занимались?", a: [{ t: "Разрабатывал бы меры безопасности, мониторил и обнаруживал бы угрозы", k: "Г" }, { t: "Управлял бы инфраструктурой и конфигурацией", k: "Д" }, { t: "Занимался бы резервным копированием и востановлением данных", k: "З" }, { t: "Ничего из этого", k: "0" }] },
+            { q: "Нравится ли вам работать с иностранными языками?", a: [{ t: "Да", k: "М" }, { t: "Нет", k: "0" },] },
+            { q: "Если бы вас попросили помочь с организацией вечеринки что бы вы делали?", a: [{ t: "Работал бы над списками приглашённых, корректировали бы план вечеринки", k: "Б" }, { t: "Расчитал бы минимальную стоимость вечеринки, попытался бы сделать вечеринку для посетителей лучше, снизил бы риски", k: "Д" }, { t: "Украсил бы место проведения вечеринки, нарисовал бы приглашения на неё", k: "В" }, { t: "Был бы охранником, следил бы за порядком", k: "Г" }, { t: "Следил бы за тем, чтобы гостям было комфортно", k: "З" }, { t: "Адаптировал бы робота к будующей вечеринке, чтобы он работал за других людей", k: "К" }, { t: "Разработал бы игру для посетителей", k: "П" }, { t: "Придумывал бы способы улучшить вечеринку и сделать её более выгодной", k: "Н" }, { t: "Ничего из этого", k: "0" }] },
+            { q: "Если бы вам нужно было бы разработать приложение, чем вы бы занялись ?", a: [{ t: "Написал бы код к приложению", k: "А" }, { t: "Протестировал бы приложение", k: "Е" }, { t: "Помогал бы команде морально, давал бы советы, поддерживал бы", k: "Л" }, { t: "Перевёл бы приложение на иностранные языки с помощью новой технологии", k: "М" }, { t: "Ничем из этого", k: "0" }] },
+            { q: "С чем из нижеперечисленного вам нравится работать?", a: [{ t: "С данными", k: "Б" }, { t: "Оценивать и анализировать уязвимости. Шифровать данные", k: "Г" }, { t: "С облачной инфраструктурой и сетями", k: "Д" }, { t: "С искусственным интелектом", k: "К" }, { t: "Нравится разрабатывать алгоритмы распознавания речи ", k: "М" }, { t: "Управлять сетью, оптимизировать производительность. Устанавливать обновления и патчи для операционных систем", k: "З" }, { t: "Ни с чем из этого", k: "0" }] },
+            { q: "С чем из нижеперечисленного вы бы связали свою жизнь ?", a: [{ t: "С разработкой веб-приложений ", k: "А" }, { t: "С созданием дизайна сайтов и приложений ", k: "В" }, { t: "С тестированием программ и приложений", k: "Е" }, { t: "С наставничеством и управлением, сплочением коллектива", k: "Л" }, { t: "С разработкой программных решений для бизнеса", k: "Н" }, { t: "С созданием видеоигр", k: "П" }, { t: "Связал бы свою жизнь с другим", k: "0" }] },
+            { q: " Если бы ваша команда учавствовала в конкурсе технологий, какую задачу вы бы взяли на себя?", a: [{ t: "Сделать яркую и красивую презентацию", k: "В" }, { t: "Отыскать информацию для вашего выступления,сделать её более структурированной и информативной", k: "Б" }, { t: "Разработать мини-сайт вашего изобретения", k: "А" }, { t: "Протестировать ваше устройство, указать на ошибки", k: "Е" }, { t: "Настроить коллектив на нужный лад, выступить с вашей презентацией", k: "Л" }, { t: "Доработать изобретение так, чтобы оно распознавало речь", k: "М" }, { t: "Придумать как ваше изобретение может помочь людям, породумать бизнес план", k: "Н" }, { t: "Никакую", k: "0" }] },
+            { q: "Что из этого вам нравится больше?", a: [{ t: "Разработка и интеграция искусственного интелекта", k: "К" }, { t: "Придумывать сюжеты для игр, воплочать их в реальность", k: "П" }, { t: "Предотвращать кибератаки", k: "Г" }, { t: "Ничего из этого", k: "0" }] },
+            { q: "Какие работы с сетями вам нравятся больше?", a: [{ t: "Управлять сетями, балансировать нагрузки", k: "Д" }, { t: "Настраивать и поддерживать компьютерные сети", k: "З" }, { t: "Мне не нравятся работы с сетями", k: "0" }, ] },
+        ];
+
+        const profs = {
+            "А": "Веб-программист", "Б": "Аналитик данных", "В": "Дизайнер",
+            "Г": "Специалист по кибербезопасности", "Д": "DevOps-инженер", "E": "Тестировщик", 
+            "3": "Системный администратор", "К": "Специалист по ИИ", "Л": "Project-менеджер",
+            "М": "Компьютерный лингвист", "Н": "Разработчик ПО", "П": "Разработчик игр",
+        };
+
+        function toggleMyList() {
+            let list = document.getElementById("dropdownList");
+            let arrow = document.getElementById("arrow");
+
+            if (list.style.display === "none" || list.style.display === "") {
+                list.style.display = "block";
+                arrow.innerText = "▲"; 
+            } else {
+                list.style.display = "none"; 
+                arrow.innerText = "▼"; 
+            }
+        }
+
+        let step = 0;
+        let score = [];
+
+        function start() {
+            document.getElementById('s-screen').style.display = 'none';
+            document.getElementById('q-screen').style.display = 'block';
+            
+            document.getElementById('test').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            showQ();
+        }
+
+        function showQ() {
+            if (step >= questions.length) {
+                finish();
+                return;
+            }
+            let curr = questions[step];
+            document.getElementById('prog').innerText = "Вопрос " + (step + 1) + " из " + questions.length;
+            document.getElementById('q-text').innerText = curr.q;
+            let ansDiv = document.getElementById('ans');
+            ansDiv.innerHTML = "";
+            curr.a.forEach(opt => {
+                let b = document.createElement('button');
+                b.className = "btn";
+                b.innerText = opt.t;
+                b.onclick = () => {
+                    if (opt.k !== "0") score.push(opt.k);
+                    step++;
+                    showQ();
+                };
+                ansDiv.appendChild(b);
+            });
+        }
+
+        function finish() {
+            document.getElementById('q-screen').style.display = 'none';
+            document.getElementById('f-screen').style.display = 'block';
+            if (score.length === 0) {
+                document.getElementById('res').innerText = "Пока что ни одна IT-профессия вам не подходит";
+                return;
+            }
+            let counts = {};
+            score.forEach(x => counts[x] = (counts[x] || 0) + 1);
+            let win = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+            document.getElementById('res').innerText = profs[win] || "IT-Универсал";
+        }
+    </script>
+</body>
+</html>
